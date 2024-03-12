@@ -10,7 +10,7 @@ namespace _391project1_3
     using System.Windows.Forms;
     using static System.Net.Mime.MediaTypeNames;
     using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-    
+
 
 
     public partial class Form1 : Form
@@ -520,6 +520,30 @@ namespace _391project1_3
                     Console.WriteLine($"Error: {ex.Message}");
                 }
 
+            }
+        }
+
+        private async void importBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select File";
+                openFileDialog.Filter = "All files (*.*)|*.*|XML File (*.xml)|*.xml";
+                openFileDialog.FilterIndex = 2;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Potentially time-consuming operation, so await it
+                        await Task.Run(() => ds.ReadXml(openFileDialog.FileName));
+                        MessageBox.Show("XML Data Imported");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

@@ -14,4 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = _391project1_3
-build_property.ProjectDir = C:\Users\dayna\OneDrive\Documents\Schoolwork\CMPT\391\project1CMPT391_3\391project1_3\
+build_property.ProjectDir = C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
