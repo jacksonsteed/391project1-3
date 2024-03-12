@@ -30,10 +30,6 @@ namespace _391project1_3
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
             listBox1 = new ListBox();
             yearBox = new ComboBox();
             semesterBox = new ComboBox();
@@ -55,6 +51,7 @@ namespace _391project1_3
             InstructorRadio = new RadioButton();
             departmentLabel = new Label();
             departmentBox = new ComboBox();
+            importBtn = new Button();
             SuspendLayout();
             // 
             // listBox1
@@ -258,11 +255,22 @@ namespace _391project1_3
             departmentBox.Size = new Size(132, 23);
             departmentBox.TabIndex = 26;
             // 
+            // importBtn
+            // 
+            importBtn.Location = new Point(194, 214);
+            importBtn.Name = "importBtn";
+            importBtn.Size = new Size(75, 39);
+            importBtn.TabIndex = 28;
+            importBtn.Text = "Import Data";
+            importBtn.UseVisualStyleBackColor = true;
+            importBtn.Click += importBtn_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(515, 349);
+            Controls.Add(importBtn);
             Controls.Add(departmentLabel);
             Controls.Add(departmentBox);
             Controls.Add(InstructorRadio);
@@ -313,5 +321,6 @@ namespace _391project1_3
         private RadioButton InstructorRadio;
         private Label departmentLabel;
         private ComboBox departmentBox;
+        private Button importBtn;
     }
 }

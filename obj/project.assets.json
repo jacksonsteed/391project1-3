@@ -470,19 +470,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dayna\\.nuget\\packages\\": {}
+    "C:\\Users\\Jacks\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dayna\\OneDrive\\Documents\\Schoolwork\\CMPT\\391\\project1CMPT391_3\\391project1_3\\391project1_3.csproj",
+      "projectUniqueName": "C:\\Users\\Jacks\\OneDrive\\Winter 2024\\CMPT 391\\project\\391project1-3\\391project1_3.csproj",
       "projectName": "391project1_3",
-      "projectPath": "C:\\Users\\dayna\\OneDrive\\Documents\\Schoolwork\\CMPT\\391\\project1CMPT391_3\\391project1_3\\391project1_3.csproj",
-      "packagesPath": "C:\\Users\\dayna\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dayna\\OneDrive\\Documents\\Schoolwork\\CMPT\\391\\project1CMPT391_3\\391project1_3\\obj\\",
+      "projectPath": "C:\\Users\\Jacks\\OneDrive\\Winter 2024\\CMPT 391\\project\\391project1-3\\391project1_3.csproj",
+      "packagesPath": "C:\\Users\\Jacks\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jacks\\OneDrive\\Winter 2024\\CMPT 391\\project\\391project1-3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dayna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jacks\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -502,6 +502,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -532,7 +537,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
