@@ -1,3 +1,5 @@
+using System.Xml;
+
 namespace _391project1_3
 {
     using Microsoft.VisualBasic;
@@ -17,12 +19,28 @@ namespace _391project1_3
     public partial class Form1 : Form
     {
 
-        [XmlRoot("Root")]
+        [XmlRoot("InstructorsRoot")]
         public class InstructorsRoot
         {
             [XmlArray("File")]
             [XmlArrayItem("Item", typeof(Instructor))]
             public Instructor[] Instructors { get; set; }
+        }
+
+        [XmlRoot("StudentsRoot")]
+        public class StudentsRoot
+        {
+            [XmlArray("File")]
+            [XmlArrayItem("Item", typeof(Student))]
+            public Student[] Students { get; set; }
+        }
+
+        [XmlRoot("CoursesRoot")]
+        public class CoursesRoot
+        {
+            [XmlArray("File")]
+            [XmlArrayItem("Item", typeof(Course))]
+            public Course[] Courses { get; set; }
         }
 
         public class Instructor
@@ -37,6 +55,29 @@ namespace _391project1_3
             public string university { get; set; }
             public string faculty { get; set; }
             public string gender { get; set; }
+        }
+
+        public class Student
+        {
+            [XmlAttribute("student")]
+            public int StudentNumber { get; set; }
+            public string studentID { get; set; }
+            public string firstName { get; set; }
+            public string lastName { get; set; }
+            public string major { get; set; }
+            public int age { get; set; }
+            public string gender { get; set; }
+            public string university { get; set; }
+        }
+
+        public class Course
+        {
+            [XmlAttribute("course")]
+            public int CourseNumber { get; set; }
+            public string courseID { get; set; }
+            public string department { get; set; }
+            public string faculty { get; set; }
+            public string university { get; set; }
         }
 
 
@@ -558,35 +599,156 @@ namespace _391project1_3
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    string xmlFilePath = openFileDialog.FileName;
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(xmlFilePath);
+                    XmlElement root = doc.DocumentElement;
+
                     try
                     {
-                        XmlSerializer serializer = new XmlSerializer(typeof(InstructorsRoot));
-                        InstructorsRoot instructorsRoot;
-
-                        using (FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open)) 
+                        if (root.Name == "InstructorsRoot")
                         {
-                            instructorsRoot = (InstructorsRoot)serializer.Deserialize(stream);
+                            XmlSerializer serializer = new XmlSerializer(typeof(InstructorsRoot));
+                            using (FileStream stream = new FileStream(xmlFilePath, FileMode.Open))
+                            {
+                                InstructorsRoot instructorsRoot = (InstructorsRoot)serializer.Deserialize(stream);
+                                ImportInstructors(instructorsRoot);
+                                Debug.WriteLine("Instructor data imported successfully.");
+                            }
                         }
-
-                        foreach (var instructor in instructorsRoot.Instructors)
+                        else if (root.Name == "StudentsRoot")
                         {
-                            // You can perform any operations you need with each instructor here
-                            Debug.WriteLine($"Instructor ID: {instructor.instructorID}");
-                            Debug.WriteLine($"Name: {instructor.firstName} {instructor.lastName}");
-                            Debug.WriteLine($"Rank: {instructor.rank}");
-                            Debug.WriteLine($"Age: {instructor.age}");
-                            Debug.WriteLine($"University: {instructor.university}");
-                            Debug.WriteLine($"Faculty: {instructor.faculty}");
-                            Debug.WriteLine($"Gender: {instructor.gender}");
+                            XmlSerializer serializer = new XmlSerializer(typeof(StudentsRoot));
+                            using (FileStream stream = new FileStream(xmlFilePath, FileMode.Open))
+                            {
+                                StudentsRoot studentsRoot = (StudentsRoot)serializer.Deserialize(stream);
+                                ImportStudents(studentsRoot);
+                                Debug.WriteLine("Student data imported successfully.");
+                            }
                         }
-
-                        MessageBox.Show("XML Data Imported");
+                        else if (root.Name == "CoursesRoot")
+                        {
+                            XmlSerializer serializer = new XmlSerializer(typeof(CoursesRoot));
+                            using (FileStream stream = new FileStream(xmlFilePath, FileMode.Open))
+                            {
+                                CoursesRoot coursesRoot = (CoursesRoot)serializer.Deserialize(stream);
+                                ImportCourses(coursesRoot);
+                                Debug.WriteLine("Course data imported successfully.");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Unrecognized XML structure.");
+                        }
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Debug.WriteLine($"An error occurred during XML import: {ex.Message}");
                     }
                 }
+            }
+        }
+
+        /*
+         * INSERTION
+         */
+
+        // Instructors
+
+        private void ImportInstructors(InstructorsRoot instructorsRoot)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                foreach (var instructor in instructorsRoot.Instructors)
+                {
+                    string query = @"INSERT INTO [dbo].[instructor] 
+                            ([instructorID], [firstName], [lastName], [rank], [age], [university], [faculty], [gender]) 
+                            VALUES 
+                            (@InstructorID, @FirstName, @LastName, @Rank, @Age, @University, @Faculty, @Gender)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@InstructorID", instructor.instructorID);
+                        cmd.Parameters.AddWithValue("@FirstName", instructor.firstName);
+                        cmd.Parameters.AddWithValue("@LastName", instructor.lastName);
+                        cmd.Parameters.AddWithValue("@Rank", instructor.rank);
+                        cmd.Parameters.AddWithValue("@Age", instructor.age);
+                        cmd.Parameters.AddWithValue("@University", instructor.university);
+                        cmd.Parameters.AddWithValue("@Faculty", instructor.faculty);
+                        cmd.Parameters.AddWithValue("@Gender", instructor.gender);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                conn.Close();
+            }
+        }
+
+        // STUDENTS
+        private void ImportStudents(StudentsRoot studentsRoot)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                foreach (var student in studentsRoot.Students)
+                {
+                    string query = @"INSERT INTO [dbo].[student] 
+                            ([studentID], [firstName], [lastName], [major], [age], [gender], [university]) 
+                            VALUES 
+                            (@StudentID, @FirstName, @LastName, @Major, @Age, @Gender, @University)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@StudentID", student.studentID);
+                        cmd.Parameters.AddWithValue("@FirstName", student.firstName);
+                        cmd.Parameters.AddWithValue("@LastName", student.lastName);
+                        cmd.Parameters.AddWithValue("@Major", student.major);
+                        cmd.Parameters.AddWithValue("@Age", student.age);
+                        cmd.Parameters.AddWithValue("@Gender", student.gender);
+                        cmd.Parameters.AddWithValue("@University", student.university);
+
+                        cmd.ExecuteNonQuery();
+                        Debug.WriteLine($"Inserted student: {student.firstName} {student.lastName}");
+                    }
+                }
+
+                conn.Close();
+            }
+        }
+
+
+        // COURSES
+        private void ImportCourses(CoursesRoot coursesRoot)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                foreach (var course in coursesRoot.Courses)
+                {
+                    string query = @"INSERT INTO [dbo].[course] 
+                            ([courseID], [department], [faculty], [university]) 
+                            VALUES 
+                            (@CourseID, @Department, @Faculty, @University)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CourseID", course.courseID);
+                        cmd.Parameters.AddWithValue("@Department", course.department);
+                        cmd.Parameters.AddWithValue("@Faculty", course.faculty);
+                        cmd.Parameters.AddWithValue("@University", course.university);
+
+                        cmd.ExecuteNonQuery();
+                        Debug.WriteLine($"Inserted course: {course.courseID}");
+                    }
+                }
+
+                conn.Close();
             }
         }
     }
