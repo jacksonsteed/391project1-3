@@ -10,11 +10,36 @@ namespace _391project1_3
     using System.Windows.Forms;
     using static System.Net.Mime.MediaTypeNames;
     using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+    using System.Xml.Serialization;
+    using System.IO;
 
 
     public partial class Form1 : Form
     {
+
+        [XmlRoot("Root")]
+        public class InstructorsRoot
+        {
+            [XmlArray("File")]
+            [XmlArrayItem("Item", typeof(Instructor))]
+            public Instructor[] Instructors { get; set; }
+        }
+
+        public class Instructor
+        {
+            [XmlAttribute("instructor")]
+            public int InstructorNumber { get; set; }
+            public string instructorID { get; set; }
+            public string firstName { get; set; }
+            public string lastName { get; set; }
+            public string rank { get; set; }
+            public int age { get; set; }
+            public string university { get; set; }
+            public string faculty { get; set; }
+            public string gender { get; set; }
+        }
+
+
         private readonly string connectionString = "Data Source = 206.75.31.209,11433; " +
                     "Initial Catalog = 391project1P2; " +
                     "User ID = mckenzy; " +
@@ -535,8 +560,26 @@ namespace _391project1_3
                 {
                     try
                     {
-                        // Potentially time-consuming operation, so await it
-                        await Task.Run(() => ds.ReadXml(openFileDialog.FileName));
+                        XmlSerializer serializer = new XmlSerializer(typeof(InstructorsRoot));
+                        InstructorsRoot instructorsRoot;
+
+                        using (FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open)) 
+                        {
+                            instructorsRoot = (InstructorsRoot)serializer.Deserialize(stream);
+                        }
+
+                        foreach (var instructor in instructorsRoot.Instructors)
+                        {
+                            // You can perform any operations you need with each instructor here
+                            Debug.WriteLine($"Instructor ID: {instructor.instructorID}");
+                            Debug.WriteLine($"Name: {instructor.firstName} {instructor.lastName}");
+                            Debug.WriteLine($"Rank: {instructor.rank}");
+                            Debug.WriteLine($"Age: {instructor.age}");
+                            Debug.WriteLine($"University: {instructor.university}");
+                            Debug.WriteLine($"Faculty: {instructor.faculty}");
+                            Debug.WriteLine($"Gender: {instructor.gender}");
+                        }
+
                         MessageBox.Show("XML Data Imported");
                     }
                     catch (Exception ex)

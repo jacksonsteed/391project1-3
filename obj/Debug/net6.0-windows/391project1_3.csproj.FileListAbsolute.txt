@@ -22,3 +22,28 @@ C:\Users\dayna\OneDrive\Documents\Schoolwork\CMPT\391\project1CMPT391_3\391proje
 C:\Users\dayna\OneDrive\Documents\Schoolwork\CMPT\391\project1CMPT391_3\391project1_3\obj\Debug\net6.0-windows\391project1_3.pdb
 C:\Users\dayna\OneDrive\Documents\Schoolwork\CMPT\391\project1CMPT391_3\391project1_3\obj\Debug\net6.0-windows\391project1_3.genruntimeconfig.cache
 C:\Users\dayna\OneDrive\Documents\Schoolwork\CMPT\391\project1CMPT391_3\391project1_3\obj\Debug\net6.0-windows\ref\391project1_3.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\391project1_3.exe
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\391project1_3.deps.json
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\391project1_3.runtimeconfig.json
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\391project1_3.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\391project1_3.pdb
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.csproj.AssemblyReference.cache
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\_391project1_3.Form1.resources
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.csproj.GenerateResource.cache
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.AssemblyInfoInputs.cache
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.AssemblyInfo.cs
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.csproj.CoreCompileInputs.cache
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.sourcelink.json
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391proje.71CFE925.Up2Date
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\refint\391project1_3.dll
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.pdb
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\391project1_3.genruntimeconfig.cache
+C:\Users\Jacks\OneDrive\Winter 2024\CMPT 391\project\391project1-3\obj\Debug\net6.0-windows\ref\391project1_3.dll
