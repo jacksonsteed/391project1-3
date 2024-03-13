@@ -14,6 +14,7 @@ namespace _391project1_3
     using static System.Windows.Forms.VisualStyles.VisualStyleElement;
     using System.Xml.Serialization;
     using System.IO;
+    using static _391project1_3.Form1;
 
 
     public partial class Form1 : Form
@@ -41,6 +42,14 @@ namespace _391project1_3
             [XmlArray("File")]
             [XmlArrayItem("Item", typeof(Course))]
             public Course[] Courses { get; set; }
+        }
+
+        [XmlRoot("TakesRoot")]
+        public class TakesRoot
+        {
+            [XmlArray("File")]
+            [XmlArrayItem("Item", typeof(Takes))]
+            public Takes[] Takes { get; set; }
         }
 
         public class Instructor
@@ -78,6 +87,16 @@ namespace _391project1_3
             public string department { get; set; }
             public string faculty { get; set; }
             public string university { get; set; }
+        }
+
+        public class Takes
+        {
+            [XmlAttribute("takes")]
+            public int TakesNumber { get; set; }
+            public string instructorID { get; set; }
+            public string courseID { get; set; }
+            public string studentID { get; set; }
+            public string dateID { get; set; }
         }
 
 
@@ -636,6 +655,16 @@ namespace _391project1_3
                                 Debug.WriteLine("Course data imported successfully.");
                             }
                         }
+                        else if (root.Name == "TakesRoot")
+                        {
+                            XmlSerializer serializer = new XmlSerializer(typeof(TakesRoot));
+                            using (FileStream stream = new FileStream(xmlFilePath, FileMode.Open))
+                            {
+                                TakesRoot takesRoot = (TakesRoot)serializer.Deserialize(stream);
+                                ImportTakes(takesRoot);
+                                Debug.WriteLine("Takes data imported successfully.");
+                            }
+                        }
                         else
                         {
                             MessageBox.Show("Unrecognized XML structure.");
@@ -745,6 +774,35 @@ namespace _391project1_3
 
                         cmd.ExecuteNonQuery();
                         Debug.WriteLine($"Inserted course: {course.courseID}");
+                    }
+                }
+
+                conn.Close();
+            }
+        }
+
+        private void ImportTakes(TakesRoot takesRoot)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                foreach (var takes in takesRoot.Takes)
+                {
+                    string query = @"INSERT INTO [dbo].[takes] 
+                            ([instructorID], [courseID], [studentID], [dateID]) 
+                            VALUES 
+                            (@InstructorID, @CourseID, @StudentID, @DateID)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@InstructorID", takes.instructorID);
+                        cmd.Parameters.AddWithValue("@CourseID", takes.courseID);
+                        cmd.Parameters.AddWithValue("@StudentID", takes.studentID);
+                        cmd.Parameters.AddWithValue("@DateID", takes.dateID);
+
+                        cmd.ExecuteNonQuery();
+                        Debug.WriteLine($"Inserted takes: {takes}");
                     }
                 }
 
