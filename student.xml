@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Root><student><Item student="1"><studentID>600000</studentID><firstName>Jane</firstName><lastName>Gooddall</lastName><major>Biology</major><age>20</age><gender>Female</gender><university>University of Calgary</university></Item><Item student="2"><studentID>600001</studentID><firstName>Margaret</firstName><lastName>Thatcher</lastName><major>Political Science</major><age>20</age><gender>Female</gender><university>University of Calgary</university></Item></student></Root>
