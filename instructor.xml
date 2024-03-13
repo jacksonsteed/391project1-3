@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <InstructorsRoot>
-    <instructor>
+    <File>
         <Item instructor="1">
             <instructorID>600000</instructorID>
             <firstName>John</firstName>
@@ -21,5 +21,5 @@
             <faculty>Faculty of Phsyical Education</faculty>
             <gender>male</gender>
             </Item>
-    </instructor>
-</Root>
+    </File>
+</InstructorsRoot>
